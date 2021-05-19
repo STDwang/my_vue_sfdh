@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法动画</title>
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+        @import "css/sfdh.css";
+    </style>
+</head>
+<body>
+
+    <header id="app">
+        <!-- 左边按键区 -->
+        <div class="left">
+            <!-- 生成按钮 -->
+            <div class="search bar6">
+                <form>
+                    <input type="text" :placeholder="text" @keyup.enter="search" @input="search($event)">
+                    <button class="button" type="button" @click="getRandom()"></button>
+                </form>
+            </div>
+            <!-- 排序按钮 -->
+            <div class="search bar2">
+                <form>
+                    <button class="button" type="button" @click="bubbleSort()"></button>
+                </form>
+            </div>
+            <!-- 清空按钮 -->
+            <div class="search bar2">
+                <form class="new">
+                    <button class="button" type="button" @click="clear()"></button>
+                </form>
+            </div>
+        </div>
+        <!-- 右边视图区 -->
+        <div class="right">
+            <div class="zbx">
+                <span v-show="isDisplay" v-for="(item,index) in array" :style="{height: item * 3 + 'px'}" :class="{'myspan':true,'flip-list-move':true,'sortingHighlight': sorts.includes(index)}">{{item}}</span>
+            </div>
+        </div>
+    </header>
+
+    <script src="./js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '王帅鹏',
+                text: '请输入数据个数...',
+                counter: 0,
+                len: 0,
+                time: 500,
+                isDisplay: true,
+                array: [],
+                sorts: [],
+                max: 100,
+                min: 1,
+            },
+            methods: {
+                search(event){
+                    this.len = 0
+                    this.array = []
+                    this.len = event.currentTarget.value
+                    console.log(this.len)
+                },
+                getRandom(){
+                    //显示方块
+                    this.isDisplay = true
+                    //初始化正在排序的方块的样式
+                    this.sorts = []
+
+                    if(this.len === 0){
+                        alert("求你先输入数好吗？嗯？")
+                    }
+                    else if(this.len < 0){
+                        alert("正整数，OK？")
+                    }
+                    else if(this.len > 30){
+                        alert("好家伙，你输入那么多干嘛？看那么多方块动来动去很有意思？小于30的数来一个")
+                    }
+                    else if(this.len>0 && this.len<=30){
+                        for(let i=0; i<this.len; i++){
+                            let temp = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+                            this.array.push(temp)
+                        }
+                        console.log(this.array)
+                    }
+                    else{
+                        alert("反正就是输入不符合格式！")
+                    }
+                },
+                maopao(){
+                    for(let i=0;i<this.array.length-1;i++){
+                        for(let j=i;j<this.array.length;j++){
+                            if(this.array[i]>this.array[j]){
+                                let temp=0
+                                temp = this.array[i]
+                                this.array[i] = this.array[j]
+                                this.array[j] = temp
+                            }
+                        }
+                    }
+                    console.log(this.array)
+                },
+                clear(){
+                    this.array = []
+                    this.isDisplay = false
+                },
+                bubbleSort(){
+                    //控制交换动画是否开启
+                    this.innerBubbleSort();
+                },
+                innerBubbleSort(){
+                    let len = this.array.length
+                    let i = 0
+                    let j = 0
+                    // 内层循环
+                    let innerLoop = () => {
+                        // 每个内层循环都执行完毕后再执行下一个外层循环
+                        if (j >= (len - 1 - i)) {
+                            j = 0
+                            i++
+                            outLoop()
+                            return false
+                        }
+                        //存比较的下标，进行红色高亮
+                        this.sorts = [j, j+1]
+                        if (this.array[j] > this.array[j + 1]) {
+                            let tmp = this.array[j]
+                            this.$set(this.array, j, this.array[j + 1])
+                            this.$set(this.array, j + 1, tmp)
+                        }
+                        // 动画是500毫秒，所以每隔600毫秒执行下一个循环
+                        setTimeout(() => {
+                            j++;
+                            innerLoop()
+                        }, this.time);
+                    }
+                    // 外层循环
+                    let outLoop = () => {
+                        if (i >= len) {
+                            return false
+                        }
+                        innerLoop()
+                    }
+                    outLoop()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
