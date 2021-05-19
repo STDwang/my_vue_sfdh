@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #494A5F;
+    font-weight: 500;
+    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+}
+
+header{
+     width: over;
+     height: 950px;
+     margin: 0 auto;
+     margin-bottom: 10px;/*要写在margin后面*/
+}
+.left {
+    background-color: #494A5F;
+    position: absolute;
+    display: inline-block;
+    width: 22%;
+    height: 100%;
+    margin: 10px;
+}
+.right {
+    background-color: #2dce89;
+    display: inline-block;
+    width: 75%;
+    height: 100%;
+    margin: 10px;
+    margin-left: 24%;
+}
+.zbx {
+    width: 90%;
+    height: 85%;
+    margin: 80px;
+    /* background-color: #11cdef; */
+    display: flex;
+}
+.myspan {
+    width: 50px;
+    background-color: red; 
+    margin-right: 14px;
+    display: flex;
+    font-size: 30px;
+}
+.flip-list-move {
+    transition: transform 0.5s;
+}
+
+.sortingHighlight {
+    background-color: #F9F0DA;
+    /* border: #F9F0DA 10px solid; */
+}
+.zbx .LastSpan {
+    margin-right: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+#container {
+        width: 500px;
+        height: 820px;
+        margin: 0 auto;
+    }
+div.search {padding: 70px 0;}
+/* span {
+    width: 50px;
+    height: 250px;
+    background-color: #c5464a;
+    display: block;
+} */
+form {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+input, button {
+        border: none;
+        outline: none;
+    }
+
+input {
+    width: 100%;
+    height: 42px;
+    padding-left: 13px;
+}
+button {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+}
+/*搜索框2*/
+.bar2 button {
+    border-radius: 10px;
+    height: 80px;
+    width: 350px;
+    top: 8px;
+    right: 2px;
+    background: #;
+}
+.bar2 button:before {
+    content: "开始排序";
+    font-family: FontAwesome;
+    color: #F15B42;
+    font-size: 20px;
+    font-weight: bold;
+}
+.bar2 .new button:before {
+    content: "清空";
+    font-family: FontAwesome;
+    color: #F15B42;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*搜索框6*/
+.bar6 {background: #F9F0DA;}
+.bar6 input {
+    border: 3px solid #c5464a;
+    border-radius: 10px;
+    background: transparent;
+    top: 0;
+    right: 0;
+}
+.bar6 button {
+    background: #c5464a;
+    border-radius: 0 5px 5px 0;
+    width: 100px;
+    top: 0;
+    right: 0;
+}
+.bar6 button:before {
+    content: "开始生成";
+    font-size: 15px;
+    color: #F9F0DA;
+}
+.button { display: inline-block; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    outline: none; color: #fff; 
+    background-color: #4CAF50; 
+    border: none; 
+    box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #3e8e41}
+.button:active { 
+    background-color: #3e8e41; 
+    box-shadow: 0 5px #666; 
+    transform: translateY(4px);
+}
